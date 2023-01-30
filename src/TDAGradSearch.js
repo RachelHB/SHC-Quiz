@@ -18,12 +18,16 @@ function TDAGradSearch(props) {
 
   const refreshList = () => {
     props.client.getProfiles().then((response) => {
-    // console.log(response.data)
-    cProfiles(response.data);
-    })
+    // console.log(response.data);
+    cProfiles(response.data.sort((a, b) => b.score - a.score))
+    // console.log(response.data.sort((a, b) => a.fullName.localeCompare(b.fullName))) 
+      
+    }
+    ) 
   };
 
-  const updateProfile = (profiles) => {
+
+ const updateProfile = (profiles) => {
     cProfiles(profiles);
   };
 
@@ -31,47 +35,20 @@ function TDAGradSearch(props) {
     refreshList();
   }, []);
 
-
-const NewGrad = () => {
+  const NewGrad = () => {
 
     return profiles.map((current) => {
 
-      const scores =  (current.q1a ? ( Number(current.q1a) ) : (0))  + (current.q1b ?  ( Number(current.q1b) ) : (0)) + (current.q1c ?  ( Number(current.q1c) ) : (0)) + (current.q1d ? ( Number(current.q1d) ) : (0))  + (current.q1e ?  ( Number(current.q1e) ) : (0)) +
-
-      (current.q2a ? ( Number(current.q2a) ) : (0))  + (current.q2b ?  ( Number(current.q2b) ) : (0)) + (current.q2c ?  ( Number(current.q2c) ) : (0)) + (current.q2d ? ( Number(current.q2d) ) : (0))  + (current.q2e ?  ( Number(current.q2e) ) : (0)) +
-
-      (current.q3a ? ( Number(current.q3a) ) : (0))  + (current.q3b ?  ( Number(current.q3b) ) : (0)) + (current.q3c ?  ( Number(current.q3c) ) : (0)) + (current.q3d ? ( Number(current.q3d) ) : (0))  + (current.q3e ?  ( Number(current.q3e) ) : (0)) +
-
-      (current.q4a ? ( Number(current.q4a) ) : (0))  + (current.q4b ?  ( Number(current.q4b) ) : (0)) + (current.q4c ?  ( Number(current.q4c) ) : (0)) + (current.q4d ? ( Number(current.q4d) ) : (0))  + (current.q4e ?  ( Number(current.q4e) ) : (0)) +
-
-      (current.q5a ? ( Number(current.q5a) ) : (0))  + (current.q5b ?  ( Number(current.q5b) ) : (0)) + (current.q5c ?  ( Number(current.q5c) ) : (0)) + (current.q5d ? ( Number(current.q5d) ) : (0))  + (current.q5e ?  ( Number(current.q5e) ) : (0));
-   
-      const fname =  current.fullName ;
-
-      // var numArray = [scores];
-      // numArray.sort((a,b) => a.scores - b.scores);
-      // console.log(numArray);
-
-      // let arr1 = [numArray[0]];
-      // let arr2 = [numArray[1]];
-      // let arr3 = [numArray[2]];
-      // arr1.push(...arr3);
-      // console.log(arr1)
-
-      // var numArray = [{scores:10}, {scores:6}, {scores:3}];
-      // numArray.sort((a,b) => a.scores - b.scores);
-      // console.log(numArray);
+      const fname = current.fullName;
+      const scores = current.score;
 
       return (
         <div className="gradProfile" key={current._id}>
             <div className = "gradCard">
               <div className="topLeft">  
 
-                <h3>Full Name:</h3>                       
-                {fname} 
-                
-                <h3>Score</h3>
-                {scores} 
+                <h3>Full Name: {fname} </h3>  
+                <h3>Score: {scores} </h3>                    
 
               </div>                                                                      
             </div>
@@ -83,19 +60,7 @@ const NewGrad = () => {
     });
   };
 
-  const arr = [NewGrad()];
-  arr.sort((a,b) => b.scores - a.scores);
-  console.log(arr);
-
-  console.log(NewGrad()); //its only returning the values and not the variables
-
-  // const numArray = [NewGrad.scores];
-  // numArray.sort((a,b) => a.scores - b.scores);
-  // console.log(numArray);
-
-  // var numArray = [{scores:10}, {scores:6}, {scores:3}];
-  // numArray.sort((a,b) => a.scores - b.scores);
-  // console.log(numArray);
+  // console.log(NewGrad());
 
 return (
     <>
@@ -159,7 +124,7 @@ return (
 
         </div>
 
-        {/* /****Column 2 - Name, details and 2 tabs***************************************************************************************************************/}      
+        {/* /****Column 2 - Name, details and 2 tabs******************************************************************/}      
       
         <div className = "col-md-10">
 
@@ -190,14 +155,11 @@ return (
 
                 {visibleInput &&  
 
-                <div>
-                  
-                  Leader Board
-                 
-                  {NewGrad()}
-
-                     
-              </div>                              
+                <div>                  
+                  Leader Board                  
+    
+                  {NewGrad()}               
+                </div>                              
 
                 } 
               
