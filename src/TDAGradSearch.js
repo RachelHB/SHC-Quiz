@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Add from './Add';
-import logo from "./TDA Logo.jpg";
+import logo from "./Seven-Hills-Logo-RGB.png";
 
 function TDAGradSearch(props) {
   const [profiles, cProfiles] = useState([]);
@@ -47,7 +47,7 @@ function TDAGradSearch(props) {
             <div className = "gradCard">
               <div className="topLeft">  
 
-                <h3>Full Name: {fname} </h3>  
+                <h3>{fname} </h3>  
                 <h3>Score: {scores} </h3>                    
 
               </div>                                                                      
@@ -67,16 +67,15 @@ return (
 
       {/* /****Navigation Bar*****************************************************************************************************/}
           
-      <Navbar  className = "header col-md-12">
+      <Navbar  className = "header ">
         <Container >
           <Navbar.Brand href="#home">
-            <img
+            {/* <img className="logo"
               src={logo}
-              width="140"
-              height="140"
-              // className="d-inline-block align-top"
+              width="200"
+              height="200"             
               alt="TDA logo"
-            />
+            /> */}
           </Navbar.Brand>
         </Container>
       </Navbar>
@@ -84,21 +83,30 @@ return (
 
       {/* /****Main Container*****************************************************************************/}
 
-      <Container fluid className = " row mainFrame col-md-12">
+      <Container fluid className = " row mainFrame">
 
          {/* /****Column 1 - Seven Hills Creative Info******************************************************************/}
       
-        <div className ="leftPannel col-md-4">     
+        <div className ="leftPannel">     
           <Row>
-            <h1 className="tda"> SEVEN
-              <br></br>HILLS 
-              <br></br>CREATIVE
+            <h1 className="tda"> Get In Touch With Our Team
             </h1>
 
             {/*create a new Gradute */}
             <div className="innerLeftPannel">             
   
-              Contact Us ...
+              <p><strong>Visit: </strong>www.sevenhillscreative.co.uk</p>
+              <p><strong>Email: </strong>hello@sevenhillscreative.co.uk</p>
+              <p><strong>Call: </strong>0114 398 4121</p>
+
+            <div className ="logo-center">
+              <img className="logo"
+              src={logo}
+              width="200"
+              height="200"
+              // className="d-inline-block align-top"
+              alt="TDA logo"
+            /></div>
                   
             </div>
           </Row>
@@ -106,17 +114,23 @@ return (
       
         {/* /****Column 1 - Quiz Links******************************************************************/}
       
-        <div className =" leftPannel col-md-4">
+        <div className =" leftPannel">
      
-          <Row>
+          <Row className="center">
             <h1 className="tda"> Take Our Quiz</h1>
 
                 {/*create a new Gradute */}
                 <div className="innerLeftPannel">             
                   
-                  <button className = "createNewButton"  onClick={() => {updateProfile(current); setVisibleInput(false); setVisibleOutput(true)}}> Have a Go!</button>          
+                  <button className = "createNewButton"  onClick={() => {updateProfile(current); setVisibleInput(false); setVisibleOutput(true)}}> Have a Go!</button>       
 
                 </div>
+
+                <div className="quiz-aim">
+                  <p>What do you think makes a great website?</p>
+                  <br></br>
+                  <p>Have a go at our Quiz to win a <strong>bottle of Champagne</strong> and a <strong>free website audit!!</strong></p> 
+                </div>  
 
           </Row>
 
@@ -126,11 +140,11 @@ return (
 
         {/* /****Column 2 - Name, details and 2 tabs******************************************************************/}      
       
-        <div className = "col-md-10">
+        <div className = "leftpanel">
 
             {/* /****Column 2/1 - User Input form**********************************************************************/}  
 
-            <Container className = "rightSection col-md-4">
+            <Container className = "rightSection ">
 
               {visibleOutput && 
                                 
@@ -150,20 +164,16 @@ return (
                 }
 
 
-              {/* /****Column 2/2 - Profile Display table***************************************************************************/}    
-              <div className = "newGradDisplay col-md-4">
+              {/* /****Column 2/2 - Profile Display table***************************************************************************/}  
+              {visibleInput &&    
 
-                {visibleInput &&  
-
-                <div>                  
-                  Leader Board                  
+              <div className = "newGradDisplay ">
+          
+                  <h1 class="tda">Leader Board</h1>                 
     
                   {NewGrad()}               
-                </div>                              
 
-                } 
-              
-              </div>     
+              </div>   }  
               
             </Container>
 

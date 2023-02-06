@@ -107,12 +107,7 @@
     
   }
   
-  .form-col-one{
-    width: 50%;
-    float:left;
-    justify-content: space-around;  
-  } 
-  
+
   .add-submit{
     padding-top: 15px;
     padding-left: 15px;
